@@ -1,0 +1,68 @@
+---
+title: Shop All Scented Candles | Scentavelle
+description: Browse every Scentavelle hand-poured scented candle — floral, woody, fresh, citrus and gourmand fragrances, plus gift sets. Filter by mood and order online or on WhatsApp.
+nav: shop
+crumb: Shop
+body: page-shop
+image: assets/images/mood_cozy.jpg
+---
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li aria-current="page">Shop</li></ol></nav>
+    <p class="eyebrow">The Collection</p>
+    <h1 class="h-display h-display--dark">All Candles</h1>
+    <p class="lede">Hand-poured in small batches. Find the scent that feels like you.</p>
+  </div>
+</section>
+
+<section class="section section--tight shop" data-shop>
+  <div class="container">
+    <div class="filter-bar">
+      <div class="filter-chips" data-filter-chips role="group" aria-label="Filter candles"></div>
+    </div>
+    <div class="shop-tools">
+      <p class="shop-tools__count" data-result-count aria-live="polite"></p>
+      <form class="shop-tools__search" role="search" onsubmit="return false">
+        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <label class="sr-only" for="shop-search">Search candles</label>
+        <input id="shop-search" type="search" placeholder="Search candles" data-shop-search autocomplete="off">
+      </form>
+      <div class="shop-tools__sort">
+        <label for="sort-select">Sort by</label>
+        <div class="select-wrap">
+          <select id="sort-select" data-sort>
+            <option value="featured">Featured</option>
+            <option value="best">Best Selling</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="newest">Newest</option>
+          </select>
+          <svg class="icon" aria-hidden="true"><use href="#i-chev-down"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid--products grid--shop" data-shop-grid></div>
+
+    <div class="empty" data-shop-empty hidden>
+      <h2 class="h-section">No candles found</h2>
+      <p>Try a different filter or search term — or ask Mahesh to help you choose.</p>
+      <div class="btn-row btn-row--center">
+        <button class="btn btn--primary" type="button" data-shop-reset>Clear filters</button>
+        <a class="btn btn--outline" href="https://wa.me/917569403967" target="_blank" rel="noopener" data-wa-generic>Ask on WhatsApp</a>
+      </div>
+    </div>
+    <noscript><p class="empty">Please enable JavaScript to browse our candles, or message us on WhatsApp at +91 75694 03967.</p></noscript>
+  </div>
+</section>
+
+<section class="section section--cream">
+  <div class="container discovery-strip" data-reveal>
+    <div>
+      <p class="eyebrow">Can’t decide?</p>
+      <h2 class="h-section">Try six miniature scents first.</h2>
+      <p>The Scentavelle Discovery Set holds one miniature of each of our most-loved candles.</p>
+    </div>
+    <a class="btn btn--primary" href="product.html?p=discovery-set" data-discovery-link>Discover Your Scent <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+</section>

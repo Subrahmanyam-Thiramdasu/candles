@@ -1,0 +1,804 @@
+/* ==========================================================================
+   SCENTAVELLE — Premium Animations & Micro-Interactions
+   "Luxury moves slowly."
+   Calm • Editorial • Sophisticated • Expensive
+   GPU-Accelerated (transform & opacity only) • Zero Layout Shift
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. KEYFRAME DEFINITIONS
+   -------------------------------------------------------------------------- */
+
+/* Subtle vertical drift into position */
+@keyframes scFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Soft dissolve */
+@keyframes scFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Cinematic hero image settle (slow, expansive deceleration) */
+@keyframes scHeroSettle {
+  0% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1.0);
+  }
+}
+
+/* Subtle, organic logo flame shimmer */
+@keyframes scFlameBreathe {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.06) rotate(1.2deg);
+    opacity: 0.92;
+  }
+}
+
+/* Cart badge bump when product is added */
+@keyframes scCartBadgeBump {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.28);
+  }
+  65% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Floating WhatsApp button entrance */
+@keyframes scWaEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Extremely restrained, slow luxury pulse for WhatsApp (never flashes) */
+@keyframes scWaGentlePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.38), 0 8px 24px rgba(37, 211, 102, 0.32);
+  }
+  40% {
+    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0), 0 8px 24px rgba(37, 211, 102, 0.32);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0), 0 8px 24px rgba(37, 211, 102, 0.32);
+  }
+}
+
+/* Modal dialog smooth elevation */
+@keyframes scModalEnter {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Modal backdrop fade */
+@keyframes scBackdropFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Toast checkmark subtle pop */
+@keyframes scCheckPop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.18);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. PAGE TRANSITIONS
+   -------------------------------------------------------------------------- */
+body {
+  transition: opacity 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+body.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. SCROLL REVEALS & EDITORIAL CONTENT ENTRANCES
+   -------------------------------------------------------------------------- */
+
+/* Elements with [data-reveal] start hidden only when JavaScript is enabled */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i, 0) * 80ms);
+  will-change: opacity, transform;
+}
+
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image reveal container with gentle zoom-out settlement */
+html.js .img-reveal {
+  overflow: hidden;
+  position: relative;
+}
+
+html.js .img-reveal img {
+  opacity: 0;
+  transform: scale(1.06);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+html.js .img-reveal.is-visible img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --------------------------------------------------------------------------
+   4. HERO & HERO SLIDER
+   -------------------------------------------------------------------------- */
+
+/* Slide transition */
+.hero__slide {
+  transition:
+    opacity 1.1s cubic-bezier(0.2, 0.8, 0.2, 1),
+    visibility 1.1s ease;
+}
+
+/* Slide image cinematic slow settling */
+.hero__slide .hero__img {
+  transform: scale(1.04);
+  transition: transform 7s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.hero__slide.is-active .hero__img {
+  animation: scHeroSettle 7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Staggered editorial text reveal inside active slide */
+.hero__slide:not(.is-active) .hero__eyebrow,
+.hero__slide:not(.is-active) .hero__title,
+.hero__slide:not(.is-active) .hero__text,
+.hero__slide:not(.is-active) .hero__cta {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+/* 1. Eyebrow appears first */
+.hero__slide.is-active .hero__eyebrow {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.18s,
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
+}
+
+/* 2. Heading appears second */
+.hero__slide.is-active .hero__title {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.34s,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.34s;
+}
+
+/* 3. Description appears third */
+.hero__slide.is-active .hero__text {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.50s,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.50s;
+}
+
+/* 4. CTA buttons appear fourth */
+.hero__slide.is-active .hero__cta {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.66s,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.66s;
+}
+
+/* Hero slide arrow controls */
+.hero__arrow {
+  transition:
+    background-color 0.28s ease,
+    color 0.28s ease,
+    border-color 0.28s ease,
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero__arrow--prev:hover {
+  transform: translateY(-50%) translateX(-3px);
+}
+
+.hero__arrow--next:hover {
+  transform: translateY(-50%) translateX(3px);
+}
+
+.hero__arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Hero progress bar smooth fill */
+.hero__bar::after {
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   5. NAVIGATION & HEADER
+   -------------------------------------------------------------------------- */
+
+/* Nav link underline sliding drawer */
+.main-nav a {
+  transition: color 0.28s ease;
+}
+
+.main-nav a::after {
+  transition:
+    transform 0.38s cubic-bezier(0.25, 1, 0.5, 1),
+    background-color 0.28s ease;
+  transform-origin: right;
+}
+
+.main-nav a:hover::after,
+.main-nav a[aria-current="page"]::after {
+  transform-origin: left;
+}
+
+/* Logo flame breathing on brand hover */
+.logo:hover .logo__flame {
+  animation: scFlameBreathe 2.4s ease-in-out infinite;
+}
+
+/* Header action icon hover movement */
+.header__actions .icon-btn {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header__actions .icon-btn:hover {
+  transform: translateY(-1.5px);
+}
+
+.header__actions .icon-btn:active {
+  transform: translateY(0);
+}
+
+/* Cart badge bump when item is added */
+.cart-link.is-bump .cart-count {
+  animation: scCartBadgeBump 0.48s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cart-link.is-bump .icon {
+  animation: scCartBadgeBump 0.48s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --------------------------------------------------------------------------
+   6. PRODUCT CARDS
+   -------------------------------------------------------------------------- */
+
+/* Card stays locked in place — NO vertical jump */
+.p-card {
+  transform: none;
+  transition: none;
+}
+
+/* Image gentle zoom on hover (1.035 scale) */
+.p-card__media {
+  overflow: hidden;
+}
+
+.p-card__img--main {
+  transition:
+    transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.p-card:hover .p-card__img--main {
+  transform: scale(1.035);
+}
+
+.p-card__img--alt {
+  transition:
+    transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+.p-card:hover .p-card__img--alt {
+  transform: scale(1.035);
+  opacity: 1;
+}
+
+/* Quick View button smooth reveal */
+.p-card__quick {
+  transition:
+    transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.24s ease,
+    color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.p-card:hover .p-card__quick {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+.p-card__quick:hover {
+  transform: translate(-50%, -2px);
+  background: #FFFFFF;
+  box-shadow: 0 6px 18px rgba(50, 28, 21, 0.16);
+}
+
+/* Card buttons hover feedback */
+.btn-add,
+.btn-wa {
+  transition:
+    background-color 0.26s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.26s ease,
+    color 0.26s ease,
+    transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.26s ease;
+}
+
+.btn-add:hover {
+  transform: translateY(-1px);
+}
+
+.btn-add:active {
+  transform: translateY(0);
+}
+
+.btn-wa:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.btn-wa:active {
+  transform: translateY(0);
+}
+
+/* Product title hover underline */
+.p-card__name a {
+  transition: color 0.24s ease;
+}
+
+.p-card__name a:hover {
+  color: var(--color-gold-hover);
+}
+
+/* --------------------------------------------------------------------------
+   7. SHOP BY MOOD CARDS
+   -------------------------------------------------------------------------- */
+.mood-card img {
+  transition:
+    transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.mood-card:hover img {
+  transform: scale(1.045);
+}
+
+.mood-card::after {
+  transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mood-card:hover::after {
+  opacity: 0.95;
+}
+
+/* Arrow shifts softly 5px */
+.mood-card__arrow {
+  transition:
+    transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.28s ease,
+    border-color 0.28s ease,
+    color 0.28s ease;
+}
+
+.mood-card:hover .mood-card__arrow {
+  transform: translateX(5px);
+}
+
+/* Mood card text stays rock stable */
+.mood-card__name,
+.mood-card__notes {
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   8. BUTTONS & EDITORIAL LINKS
+   -------------------------------------------------------------------------- */
+.btn {
+  transition:
+    background-color 0.26s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.26s ease,
+    color 0.26s ease,
+    box-shadow 0.26s ease,
+    transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 14px rgba(50, 28, 21, 0.08);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn .icon {
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn:hover .icon {
+  transform: translateX(3px);
+}
+
+/* Editorial arrow links */
+.link-arrow {
+  transition: color 0.24s ease;
+}
+
+.link-arrow .icon {
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link-arrow:hover .icon {
+  transform: translateX(4px);
+}
+
+.link-arrow--back:hover .icon {
+  transform: translateX(-4px);
+}
+
+/* Secondary circular arrow carousel buttons */
+.arrow-btn {
+  transition:
+    background-color 0.24s ease,
+    border-color 0.24s ease,
+    color 0.24s ease,
+    transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arrow-btn:hover:not(:disabled) {
+  transform: scale(1.06);
+}
+
+.arrow-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+/* --------------------------------------------------------------------------
+   9. ADD TO CART & TOAST NOTIFICATION
+   -------------------------------------------------------------------------- */
+.toast {
+  transform: translate(-50%, 20px) scale(0.96);
+  opacity: 0;
+  transition:
+    opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.toast.is-visible .toast__check {
+  animation: scCheckPop 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.08s both;
+}
+
+/* Button check feedback */
+.btn-add.is-added {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   10. FLOATING WHATSAPP CTA
+   -------------------------------------------------------------------------- */
+.wa-float {
+  animation:
+    scWaEntrance 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.6s backwards,
+    scWaGentlePulse 6s cubic-bezier(0.25, 1, 0.5, 1) 2.5s infinite;
+  transition:
+    transform 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.26s ease,
+    box-shadow 0.26s ease;
+}
+
+.wa-float:hover {
+  transform: translateY(-2.5px) scale(1.015);
+  animation-play-state: paused;
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.42);
+}
+
+.wa-float:active {
+  transform: translateY(0);
+}
+
+.wa-float .icon {
+  transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wa-float:hover .icon {
+  transform: scale(1.08);
+}
+
+/* --------------------------------------------------------------------------
+   11. QUICK VIEW & MODAL DIALOGS
+   -------------------------------------------------------------------------- */
+dialog.modal[open] {
+  animation: scModalEnter 0.34s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+dialog.modal[open]::backdrop {
+  animation: scBackdropFade 0.34s ease forwards;
+}
+
+dialog.modal .modal__close {
+  transition:
+    transform 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.24s ease,
+    color 0.24s ease;
+}
+
+dialog.modal .modal__close:hover {
+  transform: rotate(90deg);
+}
+
+/* --------------------------------------------------------------------------
+   12. SEARCH OVERLAY
+   -------------------------------------------------------------------------- */
+.search-panel {
+  transition:
+    transform 0.34s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.search-panel.is-open .search-panel__form {
+  animation: scFadeIn 0.3s ease 0.08s backwards;
+}
+
+.search-panel.is-open .search-panel__results {
+  animation: scFadeIn 0.3s ease 0.12s backwards;
+}
+
+.search-panel__tags a {
+  transition:
+    background-color 0.24s ease,
+    color 0.24s ease,
+    border-color 0.24s ease,
+    transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.search-panel__tags a:hover {
+  transform: translateY(-1px);
+}
+
+.search-results li a {
+  transition:
+    border-color 0.24s ease,
+    transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.24s ease;
+}
+
+.search-results li a:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px rgba(50, 28, 21, 0.06);
+}
+
+/* --------------------------------------------------------------------------
+   13. EDITORIAL JOURNAL, RITUAL & TRUST CARDS
+   -------------------------------------------------------------------------- */
+.journal-card .journal-card__media {
+  overflow: hidden;
+}
+
+.journal-card img {
+  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.journal-card:hover img {
+  transform: scale(1.04);
+}
+
+.review {
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.review:hover {
+  border-color: var(--color-gold);
+}
+
+.ritual__step {
+  transition: border-color 0.3s ease;
+}
+
+.ritual__step .icon {
+  transition:
+    color 0.28s ease,
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ritual__step:hover .icon {
+  color: var(--color-gold);
+  transform: scale(1.08);
+}
+
+.ritual__step:hover .ritual__num {
+  color: var(--color-gold);
+  transition: color 0.28s ease;
+}
+
+.trust__list li {
+  transition: transform 0.24s ease;
+}
+
+.trust__list li .icon {
+  transition:
+    color 0.24s ease,
+    transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.trust__list li:hover .icon {
+  transform: translateY(-2px);
+  color: var(--color-gold-hover);
+}
+
+/* Quiz mood button hover/active */
+.quiz-btn {
+  transition:
+    background-color 0.24s ease,
+    border-color 0.24s ease,
+    transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.24s ease;
+}
+
+.quiz-btn:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px rgba(50, 28, 21, 0.05);
+}
+
+.quiz-btn:active {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   14. ACCESSIBILITY: PREFERS-REDUCED-MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Reveal all content immediately without transform or delay */
+  html.js [data-reveal],
+  html.js .img-reveal img {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Keep hero slide elements immediately visible on active slide */
+  .hero__slide .hero__img,
+  .hero__slide.is-active .hero__img,
+  .hero__slide.is-active .hero__eyebrow,
+  .hero__slide.is-active .hero__title,
+  .hero__slide.is-active .hero__text,
+  .hero__slide.is-active .hero__cta {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Remove hover transforms */
+  .btn:hover,
+  .btn-add:hover,
+  .btn-wa:hover,
+  .wa-float:hover,
+  .arrow-btn:hover,
+  .quiz-btn:hover,
+  .mood-card:hover img,
+  .mood-card:hover .mood-card__arrow,
+  .p-card:hover .p-card__img--main,
+  .p-card:hover .p-card__img--alt,
+  .p-card:hover .p-card__quick,
+  .journal-card:hover img {
+    transform: none !important;
+  }
+
+  /* Toast visible without animation */
+  .toast.is-visible {
+    transform: translate(-50%, 0) !important;
+  }
+
+  /* Dialogs open without scale animation */
+  dialog.modal[open] {
+    transform: translate(-50%, -50%) !important;
+    animation: none !important;
+  }
+
+  dialog.modal[open]::backdrop {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Disable page leaving fade */
+  body.is-leaving {
+    opacity: 1 !important;
+  }
+}

@@ -1,0 +1,73 @@
+---
+title: Your Cart | Scentavelle
+description: Review your Scentavelle candles and send your order to Mahesh on WhatsApp with a single tap.
+nav: shop
+body: page-cart
+noindex: 1
+image: assets/images/hero_1.jpg
+---
+<section class="page-hero page-hero--compact">
+  <div class="container">
+    <p class="eyebrow">Review your order</p>
+    <h1 class="h-display h-display--dark">Your Cart</h1>
+  </div>
+</section>
+
+<section class="section section--tight" data-cart-page>
+  <div class="container">
+
+    <div class="cart-empty" data-cart-empty hidden>
+      <svg class="icon icon--xl" aria-hidden="true"><use href="#i-bag"/></svg>
+      <h2 class="h-section">Your cart is empty</h2>
+      <p>Find a scent that feels like you — your cart is saved on this device as you shop.</p>
+      <div class="btn-row btn-row--center">
+        <a class="btn btn--primary" href="shop.html">Shop candles <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline" href="index.html#find-your-scent">Find your scent</a>
+      </div>
+      <div class="cart-empty__suggest">
+        <h3 class="sec-sub">Most loved</h3>
+        <div class="grid grid--products" data-product-grid="featured" data-limit="4"></div>
+      </div>
+    </div>
+
+    <div class="cart-layout" data-cart-layout hidden>
+      <div class="cart-main">
+        <div class="cart-head">
+          <p class="cart-head__count" data-cart-count-text>0 items</p>
+          <button class="link-remove" type="button" data-cart-clear>Clear cart</button>
+        </div>
+        <ul class="cart-lines" data-cart-items></ul>
+        <a class="link-arrow link-arrow--back" href="shop.html"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg> Continue shopping</a>
+      </div>
+
+      <aside class="cart-summary" aria-labelledby="summary-title">
+        <h2 class="cart-summary__title" id="summary-title">Order summary</h2>
+        <div class="ship-progress" data-cart-progress>
+          <p data-cart-progress-text></p>
+          <span class="ship-progress__bar" aria-hidden="true"></span>
+        </div>
+        <dl class="totals">
+          <div><dt>Subtotal</dt><dd data-cart-subtotal>₹0</dd></div>
+          <div><dt>Shipping</dt><dd data-cart-shipping>—</dd></div>
+          <div class="totals__grand"><dt>Total</dt><dd data-cart-total>₹0</dd></div>
+        </dl>
+
+        <form class="cart-form" data-cart-form novalidate>
+          <h3 class="cart-form__title">Delivery details <small>(optional — you can also share these on WhatsApp)</small></h3>
+          <div class="field"><label for="c-name">Your name</label><input id="c-name" name="name" type="text" autocomplete="name" placeholder="Your name"></div>
+          <div class="field"><label for="c-phone">Phone</label><input id="c-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Your mobile number"></div>
+          <div class="field"><label for="c-address">Address</label><textarea id="c-address" name="address" rows="2" autocomplete="street-address" placeholder="House / street / area"></textarea></div>
+          <div class="field-row">
+            <div class="field"><label for="c-city">City</label><input id="c-city" name="city" type="text" autocomplete="address-level2" placeholder="City"></div>
+            <div class="field"><label for="c-pin">Pincode</label><input id="c-pin" name="pincode" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{6}" maxlength="6" placeholder="6 digits"></div>
+          </div>
+          <div class="field"><label for="c-gift">Gift message</label><input id="c-gift" name="giftMessage" type="text" placeholder="Optional — we’ll include a note card"></div>
+          <div class="field"><label for="c-note">Order note</label><input id="c-note" name="note" type="text" placeholder="Anything we should know?"></div>
+          <button class="btn btn--wa btn--block btn--lg" type="submit" data-cart-whatsapp><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Order on WhatsApp</button>
+          <p class="form-status" data-form-status role="status" hidden></p>
+          <p class="cart-form__note"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg> No payment is taken on this website. Mahesh confirms availability, delivery and payment with you on WhatsApp.</p>
+        </form>
+      </aside>
+    </div>
+  </div>
+</section>

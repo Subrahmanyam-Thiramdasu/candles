@@ -220,7 +220,7 @@
         fetch(S.config.newsletterEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ email: email, source: 'scentavelle-website' }) }).catch(function () { });
       }
       form.classList.add('is-success');
-      msg.textContent = 'Welcome to the Scentavelle Circle ✓ Thank you for joining.';
+      msg.textContent = 'Welcome to the Lume Nest Circle ✓ Thank you for joining.';
       form.reset();
     });
   });

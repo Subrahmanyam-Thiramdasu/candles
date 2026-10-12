@@ -180,7 +180,7 @@
     } else {
       var abs = function (r) { return new URL(r, location.href).href; };
       var u = abs(url(a));
-      document.title = a.title + ' | Scentavelle Journal';
+      document.title = a.title + ' | Lume Nest Journal';
       var set = function (sel, v) { var el = document.querySelector(sel); if (el) el.setAttribute('content', v); };
       set('meta[name="description"]', a.excerpt);
       set('meta[property="og:title"]', document.title); set('meta[property="og:description"]', a.excerpt);
@@ -188,7 +188,7 @@
       set('meta[name="twitter:title"]', document.title); set('meta[name="twitter:description"]', a.excerpt); set('meta[name="twitter:image"]', abs(a.image));
       var can = document.querySelector('link[rel="canonical"]'); if (can) can.setAttribute('href', u);
       var sc = document.createElement('script'); sc.type = 'application/ld+json';
-      sc.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'Article', headline: a.title, description: a.excerpt, image: abs(a.image), datePublished: a.date, author: { '@type': 'Organization', name: 'Scentavelle' }, publisher: { '@type': 'Organization', name: 'Scentavelle' }, mainEntityOfPage: u });
+      sc.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'Article', headline: a.title, description: a.excerpt, image: abs(a.image), datePublished: a.date, author: { '@type': 'Organization', name: 'Lume Nest' }, publisher: { '@type': 'Organization', name: 'Lume Nest' }, mainEntityOfPage: u });
       document.head.appendChild(sc);
 
       var body = a.body.map(function (b) { return b[0] === 'h' ? '<h2>' + esc(b[1]) + '</h2>' : '<p>' + esc(b[1]) + '</p>'; }).join('');
@@ -199,7 +199,7 @@
           '<p class="eyebrow">' + esc(a.cat) + ' • ' + a.read + ' min read</p>' +
           '<h1 class="h-display h-display--dark">' + esc(a.title) + '</h1>' +
           '<p class="lede">' + esc(a.excerpt) + '</p>' +
-          '<p class="article-hero__date">By the Scentavelle team · ' + fmtDate(a.date) + '</p>' +
+          '<p class="article-hero__date">By the Lume Nest team · ' + fmtDate(a.date) + '</p>' +
         '</div></header>' +
         '<div class="container"><figure class="article-figure img-reveal" data-reveal><img src="' + a.image + '" alt="' + esc(a.title) + '" style="object-position:' + a.pos + '"></figure></div>' +
         '<div class="container container--narrow"><div class="prose">' + body + '</div>' +

@@ -67,7 +67,7 @@ EXPECTED_PAGES.forEach(page => {
     const title = titleMatch[1];
     assert(!titles.has(title), `${page} title is unique: "${title.slice(0, 40)}..."`);
     titles.add(title);
-    assert(title.includes('Scentavelle'), `${page} title contains brand name "Scentavelle"`);
+    assert(title.includes('Lume Nest'), `${page} title contains brand name "Lume Nest"`);
   }
 
   // Meta Description

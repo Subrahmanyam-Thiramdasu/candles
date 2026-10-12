@@ -185,7 +185,7 @@
 
   function renderProduct(p) {
     var url = absUrl(S.productUrl(p));
-    document.title = p.name + ' Scented Candle | Scentavelle';
+    document.title = p.name + ' Scented Candle | Lume Nest';
     var desc = p.name + ' — ' + p.shortDesc + ' Hand-poured ' + p.weight + ' candle with ' + p.notes.join(', ') + '. Order online or on WhatsApp.';
     setMeta('meta[name="description"]', 'content', desc);
     setMeta('link[rel="canonical"]', 'href', url);
@@ -200,7 +200,7 @@
     var ld = [{
       '@context': 'https://schema.org', '@type': 'Product', name: p.name, sku: p.id,
       description: p.description, image: p.images.map(absUrl),
-      brand: { '@type': 'Brand', name: 'Scentavelle' },
+      brand: { '@type': 'Brand', name: 'Lume Nest' },
       category: p.category === 'Gift Set' ? 'Gift Sets' : 'Scented Candles',
       weight: p.weight,
       offers: { '@type': 'Offer', priceCurrency: 'INR', price: p.price, availability: 'https://schema.org/InStock', url: url, itemCondition: 'https://schema.org/NewCondition' }

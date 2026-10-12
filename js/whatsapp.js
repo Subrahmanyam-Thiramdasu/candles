@@ -34,7 +34,7 @@
   var M = {};
 
   M.generic = function () {
-    return 'Hello ' + OWNER + ',\nI would like to know more about Scentavelle candles.\nThank you.';
+    return 'Hello ' + OWNER + ',\nI would like to know more about Lume Nest candles.\nThank you.';
   };
 
   /** Single product quick order */
@@ -66,7 +66,7 @@
     ]);
     return compact([
       'Hello ' + OWNER + ',',
-      'I would like to place an order from Scentavelle.',
+      'I would like to place an order from Lume Nest.',
       '',
       line('Name', info.name),
       line('Phone', info.phone),
@@ -110,7 +110,7 @@
   M.contact = function (d) {
     return compact([
       'Hello ' + OWNER + ',',
-      d.subject ? 'Subject: ' + d.subject : 'I have an enquiry for Scentavelle.',
+      d.subject ? 'Subject: ' + d.subject : 'I have an enquiry for Lume Nest.',
       '',
       line('Name', d.name),
       line('Phone', d.phone),
@@ -124,7 +124,7 @@
   M.customGift = function (d) {
     return compact([
       'Hello ' + OWNER + ',',
-      'I would like to create a custom Scentavelle gift.',
+      'I would like to create a custom Lume Nest gift.',
       '',
       line('Name', d.name),
       line('Phone', d.phone),

@@ -21,7 +21,7 @@ const ROOT = __dirname;
 const SRC = path.join(ROOT, '_src');
 
 const SITE = {
-  name: 'Scentavelle',
+  name: 'Lume Nest',
   tagline: 'Scents for a softer life.',
   url: 'https://www.scentavelle.in', // <-- CHANGE to your live domain
   whatsapp: '917569403967',

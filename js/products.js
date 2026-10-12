@@ -10,7 +10,7 @@
   var S = (window.Scentavelle = window.Scentavelle || {});
 
   S.config = {
-    brand: 'Scentavelle',
+    brand: 'Lume Nest',
     owner: 'Mahesh',
     whatsapp: '917569403967', // used ONLY for wa.me links
     phoneDisplay: '+91 75694 03967',
